@@ -20,6 +20,8 @@ import {
   employeeSchema,
   EmployeeFormType,
 } from "@/lib/validation/employeeSchema";
+import { uploadImageToCloudinary } from '@/lib/cloudinary/cloudinary';
+import { useRouter } from 'next/navigation'; // ✅ for App Router
 
 export default function AddEmployeePage() {
   const {
@@ -29,11 +31,38 @@ export default function AddEmployeePage() {
   } = useForm<EmployeeFormType>({
     resolver: zodResolver(employeeSchema),
   });
+  const router = useRouter();
 
-  const onSubmit = (data: EmployeeFormType) => {
-    console.log("✅ Submitted:", data);
+  const onSubmit = async (formData:EmployeeFormType) => {
+    try {
+      let imageUrl = "";
+  
+      const fileList = formData.profilePhoto;
+      if (fileList && fileList[0]) {
+        imageUrl = await uploadImageToCloudinary(fileList[0]);
+      }
+  
+      const newEmployee = {
+        ...formData,
+        profilePhoto: imageUrl,
+      };
+  
+      // Send to API 
+      await fetch("/api/employees", {
+        method: "POST",
+        body: JSON.stringify(newEmployee),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      router.push("/employees");
+  
+    } catch (err) {
+      console.error("Error submitting employee:", err);
+    }
   };
-
+  
   return (
     <Box sx={{ maxWidth: 900, mx: "auto", mt: 6, px: 2 }}>
       <Paper elevation={3} sx={{ p: 4, borderRadius: 3 }}>

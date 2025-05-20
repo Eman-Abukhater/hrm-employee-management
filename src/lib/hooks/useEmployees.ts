@@ -1,13 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import { mockEmployees } from '../data/employees';
 
 export const useEmployees = () => {
   return useQuery({
     queryKey: ['employees'],
     queryFn: async () => {
-      // Simulate fetch delay
-      await new Promise((res) => setTimeout(res, 300));
-      return mockEmployees;
+      const res = await fetch('/api/employees');
+      if (!res.ok) throw new Error('Failed to fetch employees');
+      return res.json();
     },
   });
 };
