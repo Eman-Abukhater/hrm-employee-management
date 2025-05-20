@@ -13,7 +13,6 @@ import {
 } from "@mui/material";
 
 import Grid from "@mui/material/Grid";
-
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -22,7 +21,7 @@ import {
 } from "@/lib/validation/employeeSchema";
 import { uploadImageToCloudinary } from '@/lib/cloudinary/cloudinary';
 import { useRouter } from 'next/navigation'; // ✅ for App Router
-
+import { v4 as uuidv4 } from 'uuid'; 
 export default function AddEmployeePage() {
   const {
     register,
@@ -43,6 +42,7 @@ export default function AddEmployeePage() {
       }
   
       const newEmployee = {
+        id: uuidv4(), // Generate a unique ID for the new employee
         ...formData,
         profilePhoto: imageUrl,
       };
@@ -71,7 +71,7 @@ export default function AddEmployeePage() {
         </Typography>
 
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
-          <Grid container spacing={3}>
+          <Grid container spacing={3} >
             {/* Full Name */}
             <Grid item xs={12} sm={6}>
               <TextField
