@@ -1,0 +1,35 @@
+[
+  {
+    "id": "1",
+    "fullName": "Eman Abukhater",
+    "email": "eman@example.com",
+    "phone": "1234567890",
+    "department": "Engineering",
+    "role": "Frontend Developer",
+    "joinDate": "2023-01-15",
+    "status": "Active",
+    "profilePhoto": "/avatar1.png"
+  },
+  {
+    "id": "2",
+    "fullName": "Ahmed Youssef",
+    "email": "ahmed@example.com",
+    "phone": "9876543210",
+    "department": "HR",
+    "role": "HR Manager",
+    "joinDate": "2022-07-10",
+    "status": "Inactive",
+    "profilePhoto": "/avatar2.png"
+  },
+  {
+    "id": "dfbc3c7b-c18f-4304-8869-4268f2b63bec",
+    "fullName": "Eman abukhater ",
+    "email": "alixdunphy97@gmail.com",
+    "phone": "07880109877",
+    "department": "IT",
+    "role": "engineering ",
+    "joinDate": "2025-05-14",
+    "status": "Inactive",
+    "profilePhoto": "https://res.cloudinary.com/dbjueuler/image/upload/v1747773665/employees/f9wtvvukucdroi02rv3d.svg"
+  }
+]
