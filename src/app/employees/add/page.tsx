@@ -11,7 +11,6 @@ import {
   Button,
   Paper,
 } from "@mui/material";
-
 import Grid from "@mui/material/Grid";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,7 +19,7 @@ import {
   EmployeeFormType,
 } from "@/lib/validation/employeeSchema";
 import { uploadImageToCloudinary } from '@/lib/cloudinary/cloudinary';
-import { useRouter } from 'next/navigation'; // ✅ for App Router
+import { useRouter } from 'next/navigation'; // for App Router
 import { v4 as uuidv4 } from 'uuid'; 
 export default function AddEmployeePage() {
   const {
