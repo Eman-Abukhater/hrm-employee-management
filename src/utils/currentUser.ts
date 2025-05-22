@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-const CURRENT_USER_PATH = path.join(process.cwd(), "src/data/currentUser.json");
+const CURRENT_USER_PATH = path.join(process.cwd(), "src", "lib", "data", "currentUser.json");
 
 export function getCurrentUser() {
   try {

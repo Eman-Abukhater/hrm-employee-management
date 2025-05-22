@@ -8,8 +8,9 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
-  const handleLogin = async () => {
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault(); 
+  
     try {
       const res = await fetch("/api/login", {
         method: "POST",
@@ -20,7 +21,8 @@ export default function LoginPage() {
       if (res.ok) {
         const data = await res.json();
         const role = data.user.role;
-      
+  
+        //  Redirect based on role
         if (role === "admin") {
           router.push("/admin");
         } else if (role === "hr") {
@@ -28,13 +30,16 @@ export default function LoginPage() {
         } else {
           router.push("/employee");
         }
+      } else {
+        const data = await res.json();
+        setError(data.message || "Login failed");
       }
-      
     } catch (err) {
       setError("Unexpected error occurred");
       console.error("Login error:", err);
     }
   };
+  
   
 
   return (
